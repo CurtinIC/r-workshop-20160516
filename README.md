@@ -1,14 +1,16 @@
 # R Workshop
 
-**When:** 16 May 2016
+**When:** 16 May 2016, 10am-12pm
 
 **Where:** Cisco IoE Innovation Centre, building 216, level 2
 
-**Please RSVP by 13 May sending an email to [curtinic@curtin.edu.au](mailto:curtinic@curtin.edu.au)**
+**Please RSVP by 13 May sending an email to [curtinic@curtin.edu.au](mailto:curtinic@curtin.edu.au?subject=RSVP%20for%20R%20Workshop&body=I%20am%20going%20to%20attend%20the%20workshop)**
 
-R is a high level programming language for statistical analysis and data visualisation. It is an open source and we'll supported language that provides many packages for a wide variety of statistical and graphical techniques.
+**Places are limited**
+
+R is a high level programming language for statistical analysis and data visualisation. It is an open source and well supported language that provides many packages for a wide variety of statistical and graphical techniques.
  
-If you would like to know more about R and how to get started come along to the work-along Introduction to R hosted by the Curtin Institute for Computation. 
+If you would like to know more about R and how to get started come along to the work-along **Introduction to R** hosted by the Curtin Institute for Computation. 
  
 The session is aimed at beginners and will show you how to access and work with your data, how to load packages and where to find help.
 

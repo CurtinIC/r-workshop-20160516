@@ -18,6 +18,17 @@ This introduction will use RStudio, an implemented development environment for R
 
 This workshop is available free of charge to Curtin students and staff.
 
+# Course Outline
+
+1. Overview of R and RStudio
+
+2. Importing your data into R
+
+3. Manipulating your data
+
+4. Visualising your data
+
+
 # Install instructions
 
 R is a programming language that is especially powerful for data exploration, visualization, and statistical analysis. To interact with R, we use RStudio.

@@ -22,7 +22,7 @@ If you would like to know more about R and how to get started come along to the 
 
 The session is aimed at beginners and will show you how to access and work with your data, how to load packages and where to find help.
 
-This introduction will use RStudio, an implemented development environment for R, and we ask you to follow the instructions below to install R and RStudio before the session. If you need help with the installation please arrive 15 minutes early so we can help you.
+This introduction will require you to bring your laptop. We will use RStudio, an implemented development environment for R, and we ask you to follow the instructions below to install R and RStudio before the session. If you need help with the installation please arrive 15 minutes early so we can help you.
 
 This workshop is available free of charge to Curtin students and staff.
 

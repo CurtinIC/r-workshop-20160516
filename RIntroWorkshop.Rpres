@@ -1,0 +1,481 @@
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+```
+
+Introduction to R
+========================================================
+width: 1200
+author: Rebecca Lange
+date: Curtin Institute for Computation
+16/05/2016
+
+
+
+Installation
+========================================================
+## If you haven't done so already download and install  
+## R and RStudio
+
+
+You can download R from the Comprehensive R Archive Network (CRAN)
+[https://cran.r-project.org/index.html](https://cran.r-project.org/index.html)
+
+RStudio is available from
+https://www.rstudio.com/products/rstudio/download/
+
+
+
+What is R?
+========================================================
+
+- R is a programming language with many available statistical commands and routines which are supported by good visualisation tools 
+- R is free, open-source sooftware
+- R is cross-platform and runs on Windows, MacOS and Linux
+
+Interacting with R
+========================================================
+**2 main ways of interaction:**
+
+- Command Line + text editor
+- Integrated Development Environment, e.g. RStudio
+
+**RStudio**
+
+- easy to use graphical interface
+- shows all R components, i.e. the console, workspace, script/ text editor, history
+
+Workspace and Working Directory
+========================================================
+
+- your workspace is saved at the end of a session 
+- R will reload this next time you open it
+- this is very useful if you several datasets and/or variables
+
+**By default R writes to the current dir and loads from your home dir.**
+
+```{r}
+getwd()
+```
+
+```{r eval=F}
+setwd("~")
+```
+
+**Note: R does not remember which packages you had loaded previously!**
+ 
+ 
+Assigning variables
+========================================================
+```{r}
+x <- 5
+x
+x = 6
+x
+
+7 -> x
+x
+```
+
+Basic arithmetic operations
+========================================================
+**+ - * / ^**
+``` {r}
+3+4
+
+15/5
+
+2^3
+```
+
+Exercise 1
+========================================================
+- create a variable **x** and assign it a value of 8
+- create a new variable **y** that has a value of ``` 2*7+2^3 ``` and examine it
+- create a variable **z** with a value of 2 times **x** divided by **y**
+
+<div style="font-weight:bold; color:purple;padding:1em;">TIP: ALT and - is a shortcut for <-, try option and - on a Mac</div>
+
+
+Solution
+========================================================
+``` {r}
+x <- 8
+```
+```{r, echo=FALSE}
+x
+```
+```{r}
+y <- 2*7+2^3
+```
+```{r, echo=FALSE}
+y
+```
+```{r}
+z <- 2*x/y 
+```
+```{r, echo=FALSE}
+z
+```
+
+Vectors and data frames
+========================================================
+- vectors can be numeric
+```{r}
+v <- seq(1,5)
+v
+```
+strings 
+```{r}
+words <- c("This","is","a","string")
+words
+```
+Vectors and data frames (cont.)
+========================================================
+logical values
+```{r}
+c(T,T,F,T)
+```
+factors (i.e. categories)
+```{r}
+factor(c("low","medium","low","high","high","medium","medium"))
+```
+
+Vectors and data frames (cont.)
+========================================================
+
+**Note: Nameing is case sensitive**
+```{r}
+words <- c("This","is","a","string")
+WoRds <- seq(1:10)
+```
+```{r}
+words
+WoRds
+```
+
+Vectors and data frames (cont.)
+========================================================
+- A data frame is basically a matrix/ data table with named columns (and/or rows)
+that brings together a list of vectors of equal length. 
+
+```{r}
+ n = c(2, 3, 5) 
+ s = c("aa", "bb", "cc") 
+ b = c(TRUE, FALSE, TRUE) 
+ df = data.frame(n, s, b)       # df is a data frame 
+ df
+```
+
+Exercise 2
+========================================================
+
+
+Where are all the variables?
+========================================================
+Your Workspace/ Environment
+```{r, eval=FALSE}
+ls()
+objects()
+```
+
+``` {r, eval=T, echo=F}
+objects()
+```
+
+Removing unwanted variables:
+```{r}
+rm(y)
+ls()
+```
+
+Importing your data
+========================================================
+```{r, eval=F}
+?read.table()
+```
+<img src="table.fun.png" style="background-color:transparent; border:0px; box-shadow:none;"></img>
+
+Exercise - Importing your data
+========================================================
+If you haven't done so yet download the example file from github
+
+http://curtinic.github.io/r-workshop-20160516/
+
+- set your working directory to the downloaded folder
+- read the **NYairquality.csv** file
+<div style="color:purple;padding:1em">Tip: Look at the help file for ```read.table()```.</div>
+<div style="color:purple">Is there another function that is more appropriate?</div>
+
+
+Solution - Importing your data
+========================================================
+
+<div style="font-weight:bold;color:purple;padding:2em">Note: Variable names in R are case sensitive</div>
+ 
+```{r}
+nyair<-read.csv("data/NYairquality.csv")
+```
+
+
+Exploring and manipulating your data
+========================================================
+For all data frames and other variables/ values:
+
+```{r, eval=F}
+str(nyair)
+summary(nyair)
+View(nyair)
+```
+
+For data frames only:
+- You can click on the name in the RStudio Environment tab and it will open the data in a new window tab
+- for none *data.frame* objects the environment tab shows the same information as ```str()``` 
+
+
+Exploring and manipulating your data - Exercise1
+========================================================
+
+<div style="font-weight:bold; color:purple;padding:2em;">Test out the different ways of exploring your data:</div>
+> check the RStudio **Environment** tab
+```{r, eval=F}
+#evaluate these functions using the data you just loaded
+str(object name)
+summary(object name)
+View(object name)
+```
+
+
+Exploring and manipulating your data (cont.)
+========================================================
+Accessing the data frame:
+- for named columns use the $ operator
+```{r}
+summary(nyair$Temp)
+```
+
+
+Exploring and manipulating your data (cont.)
+========================================================
+Accessing the data frame:
+- use element number or range, e.g. data[rows,columns]
+```{r}
+nyair[1,4]
+```
+```{r, eval=F}
+summary(nyair[1:10,4]) #print summary of column 4, rows 1 to 10
+summary(nyair[,4]) # print summary of column 4
+```
+
+Exploring and manipulating your data (cont.)
+========================================================
+Creating new columns:
+- we can use the $ operator with the new name and assign it a value
+```{r}
+nyair$TempC<-(nyair$Temp-32)/1.8
+summary(nyair$TempC)
+```
+
+
+Exploring and manipulating your data (cont.)
+========================================================
+Selecting specific data:
+- say you are interested in the data of the first week of every month:
+use the ```which()``` function
+```{r}
+nyairweek1<-which(nyair$Day<8)
+str(nyairweek1)
+```
+**conditional and logical operators used by R:**
+
+== equal, != not equal,  < less than,  <= less than or equal,  > greater than,  >= greater than or equal,  & and,   | or
+
+
+Exploring and manipulating your data - Exercise 2
+========================================================
+
+<div style="font-weight:bold; color:purple;padding:1em;">Try accesing the information in the column named Ozone:</div>
+- look at the entire column, what's the min and max, are there any columns without data?
+- find all the array elements where the Ozone measure is over 70 ppb
+- Is there a month when the Ozone is especially high?
+
+Exploring and manipulating your data - Solution
+========================================================
+```{r}
+summary(nyair$Ozone)
+highozone<-which(nyair$Ozone>70)
+summary(nyair$Month[highozone])
+```
+
+Visualising your data - histogram
+========================================================
+```{r}
+hist(nyair$Month[highozone])
+```
+
+Visualising your data - scatterplot
+========================================================
+```{r}
+plot(nyair$TempC, nyair$Ozone, pch=20)
+```
+
+Visualising your data - scatterplot
+========================================================
+-adding labels and titles
+```{r}
+plot(nyair$TempC, nyair$Ozone, pch=20, xlab="Temperature", ylab="Ozone", main = "NY air quality data")
+```
+
+Visualising your data - scatterplot
+========================================================
+- adding additional data or lines, changing colours
+```{r, echo=F}
+fit1=lm(nyair$Ozone~nyair$TempC)
+```
+```{r}
+plot(nyair$TempC, nyair$Ozone, pch=20, xlab="Temperature", ylab="Ozone", main = "NY air quality data")
+points(30,100, pch="+", col="red" )
+abline(fit1)
+```
+
+Visualising your data - Exercise
+========================================================
+- plot the temperature for each day (i.e. TempC vs Day) and colour the points by month
+
+Hint: set up a different subset for each month  using the ```which``` function
+
+- added challenge, change the marker you use for each month
+
+```{r, eval=F}
+# check the help files for the following functions to help you with the exercise
+?plot()
+?points()
+?par()
+# also check out these functions for adding lines to your plot
+?lines()
+?abline()
+```
+
+
+Visualising your data - Solution
+========================================================
+```{r, eval=F}
+may<-which(nyair$Month==5)
+jun<-which(nyair$Month==6)
+jul<-which(nyair$Month==7)
+aug<-which(nyair$Month==8)
+sep<-which(nyair$Month==9)
+
+
+plot(nyair$Day[may],nyair$TempC[may], pch=20, xlab="Day", ylab="Temperature", main = "NY air quality data", ylim=range(nyair$TempC))
+points(nyair$Day[jun],nyair$TempC[jun], pch=20, col="red")
+points(nyair$Day[jul],nyair$TempC[jul], pch=20, col="darkgreen")
+points(nyair$Day[aug],nyair$TempC[aug], pch=20, col="blue")
+points(nyair$Day[sep],nyair$TempC[sep], pch=20, col="orchid4")
+```
+
+Visualising your data - Solution
+========================================================
+```{r, echo=F}
+may<-which(nyair$Month==5)
+jun<-which(nyair$Month==6)
+jul<-which(nyair$Month==7)
+aug<-which(nyair$Month==8)
+sep<-which(nyair$Month==9)
+
+plot(nyair$Day[may],nyair$TempC[may], pch=20, xlab="Day", ylab="Temperature", main = "NY air quality data", ylim=range(nyair$TempC))
+points(nyair$Day[jun],nyair$TempC[jun], pch="+", col="red")
+points(nyair$Day[jul],nyair$TempC[jul], pch="x", col="darkgreen")
+points(nyair$Day[aug],nyair$TempC[aug], pch=2, col="blue")
+points(nyair$Day[sep],nyair$TempC[sep], pch=15, col="orchid4")
+```
+
+Visualising your data - adding a legend
+========================================================
+```{r, eval=F}
+legend("topright", legend = c("May","June","July","August","September"), pch = c(20,3,4,2,15), col = c("black","red","darkgreen","blue","orchid4"))
+```
+
+```{r, echo=F}
+may<-which(nyair$Month==5)
+jun<-which(nyair$Month==6)
+jul<-which(nyair$Month==7)
+aug<-which(nyair$Month==8)
+sep<-which(nyair$Month==9)
+
+plot(nyair$Day[may],nyair$TempC[may], pch=20, xlab="Day", ylab="Temperature", main = "NY air quality data", ylim=range(nyair$TempC))
+points(nyair$Day[jun],nyair$TempC[jun], pch=3, col="red")
+points(nyair$Day[jul],nyair$TempC[jul], pch=4, col="darkgreen")
+points(nyair$Day[aug],nyair$TempC[aug], pch=2, col="blue")
+points(nyair$Day[sep],nyair$TempC[sep], pch=15, col="orchid4")
+legend("topright", legend = c("May","June","July","August","September"), pch = c(20,3,4,2,15), col = c("black","red","darkgreen","blue","orchid4"))
+```
+
+Exporting your data
+========================================================
+```{r, eval=F}
+write.csv() # save a single file
+save() # save your whole workspace as .RData file
+
+# Remember R/RStudio automatically ask if you want to save your workspace when you quit a session
+# Note: R does not load packages from your last R session
+# It is good practice to include all required packages at the top of your script
+```
+```{r, eval=F}
+# In RStudio you have the option to export your plots from the Plots tab
+
+CairoPNG()  # from the package Cairo, also has PDF, JPEG and other formats supported, this saves the plot you make after you call this comand. Using this function you will have more control over the size and layout of the saved plot.
+```
+
+Exporting your data - Exercise 
+========================================================
+- save your data and plot to a file
+- make sure you give the .csv file a new name so you don't overwrite the original data!
+
+Exporting your data - Solution
+========================================================
+```{r, eval=F}
+write.csv(nyair,"nyair_update.csv", row.names=F)
+
+CairoPNG("NYair_Temp_vs_Day.png")
+plot(nyair$Day[may],nyair$TempC[may], pch=20, xlab="Day", ylab="Temperature", main = "NY air quality data", ylim=range(nyair$TempC))
+points(nyair$Day[jun],nyair$TempC[jun], pch=3, col="red")
+points(nyair$Day[jul],nyair$TempC[jul], pch=4, col="darkgreen")
+points(nyair$Day[aug],nyair$TempC[aug], pch=2, col="blue")
+points(nyair$Day[sep],nyair$TempC[sep], pch=15, col="orchid4")
+legend("topright", legend = c("May","June","July","August","September"), pch = c(20,3,4,2,15), col = c("black","red","darkgreen","blue","orchid4"))
+dev.off()
+```
+
+Useful functions
+========================================================
+```{r, eval=FALSE}
+str(); summary() #info on your data
+ls(); objects() #listing your workspace
+rm() #remocing objects from your workspace
+dir() #list files in the directory
+getwd(); setwd() #get and set working directory
+read.csv(); write.csv() #read and write a csv file
+?function #display helpfile, or use Help tab in RStudio
+```
+
+Finding help and further learning
+========================================================
+- inbuilt R documentation which includes use examples 
+- [RSeek](http://rseek.org/)
+- [R-blogger](http://www.r-bloggers.com)
+- [Quick-R](http://www.statmethods.net/index.html)
+
+ 
+Feedback + future training survey
+========================================================
+**Please fill in the feedback and future training survey:**
+[URL to the survey]()
+
+We will email you the link as well.
+
+**Any Questions?**
+
+Ask now or come along to [Hacky Hour](http://cuhackyhour.github.io/), every Wednesday 3pm at Common Ground
+
+<div style="font-weight:bold; color:purple;padding:3em;">Thank you all for coming!</div> 
+

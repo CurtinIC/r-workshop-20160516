@@ -49,7 +49,7 @@ Workspace and Working Directory
 
 - your workspace is saved at the end of a session 
 - R will reload this next time you open it
-- this is very useful if you several datasets and/or variables
+- this is very useful if you work with several datasets and/or variables
 
 **By default R writes to the current dir and loads from your home dir.**
 
@@ -143,7 +143,7 @@ factor(c("low","medium","low","high","high","medium","medium"))
 Vectors and data frames (cont.)
 ========================================================
 
-**Note: Nameing is case sensitive**
+**Note: Naming is case sensitive**
 ```{r}
 words <- c("This","is","a","string")
 WoRds <- seq(1:10)
@@ -155,7 +155,7 @@ WoRds
 
 Vectors and data frames (cont.)
 ========================================================
-- A data frame is basically a matrix/ data table with named columns (and/or rows)
+- A data frame is basically a matrix/table with named columns (and/or rows)
 that brings together a list of vectors of equal length. 
 
 ```{r}
@@ -213,6 +213,7 @@ Solution - Importing your data
 <div style="font-weight:bold;color:purple;padding:2em">Note: Variable names in R are case sensitive</div>
  
 ```{r}
+# setcwd('DOWNLOADED_FOLDER_PATH')
 nyair<-read.csv("data/NYairquality.csv")
 ```
 
@@ -282,7 +283,7 @@ Selecting specific data:
 - say you are interested in the data of the first week of every month:
 use the ```which()``` function
 ```{r}
-nyairweek1<-which(nyair$Day<8)
+nyairweek1<-which(nyair$Day<8) # day of month < 8
 str(nyairweek1)
 ```
 **conditional and logical operators used by R:**
@@ -295,7 +296,7 @@ Exploring and manipulating your data - Exercise 2
 
 <div style="font-weight:bold; color:purple;padding:1em;">Try accesing the information in the column named Ozone:</div>
 - look at the entire column, what's the min and max, are there any columns without data?
-- find all the array elements where the Ozone measure is over 70 ppb
+- find all the array elements where the Ozone measure is over 70 parts per billion (ppb)
 - Is there a month when the Ozone is especially high?
 
 Exploring and manipulating your data - Solution

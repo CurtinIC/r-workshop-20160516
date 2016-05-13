@@ -28,7 +28,7 @@ This workshop is available free of charge to Curtin students and staff.
 
 4. Visualising your data
 
-- The course slides are provided in the RIntroWorkshop.Rpres file and the data is available in the data folder.
+- The course slides are provided in the [RIntroWorkshop.html](http://tinyurl.com/zg522k4) file and the data is available in the data folder.
 
 # Install instructions
 

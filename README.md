@@ -30,7 +30,7 @@ This workshop is available free of charge to Curtin students and staff.
 
 5. Exporting your data
 
-- The course slides are provided in the [RIntroWorkshop.html](http://tinyurl.com/zg522k4) file and the data is available in the data folder.
+- The course slides are provided in the [RIntroWorkshop_230516.html](https://cdn.rawgit.com/CurtinIC/r-workshop-20160516/master/RIntroWorkshop_230516.html) file and the data is available in the data folder.
 
 # Install instructions
 
